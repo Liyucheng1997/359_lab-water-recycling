@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>城市水循环 · 下水道与再生水系统三维模型</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="viewport"></div>
+
+  <header class="topbar glass">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c5 6.5 9 11.2 9 16a9 9 0 1 1-18 0c0-4.8 4-9.5 9-16z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M11 20a5 5 0 0 0 5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <div>
+        <h1>城市水循环三维剖视模型</h1>
+        <p>从水龙头到下水道，再回到水龙头 · Urban Water Cycle</p>
+      </div>
+    </div>
+    <div class="legend" id="legend"></div>
+  </header>
+
+  <aside class="panel left glass" id="stagePanel">
+    <div class="panel-head">
+      <span>工艺流程</span>
+      <button class="ghost sm" id="btnOverview" title="回到全景 (Esc)">全景</button>
+    </div>
+    <ol id="stageList"></ol>
+  </aside>
+
+  <section class="panel right glass" id="info">
+    <div class="info-empty" id="infoEmpty">
+      <h2>一滴水的城市旅程</h2>
+      <p>点击左侧流程、三维场景中的设施或标签，查看每一步的工作原理、设计参数与水质变化。</p>
+      <ul class="tips">
+        <li><b>跟随水滴</b>：镜头追踪一滴水走完整个循环</li>
+        <li><b>地表透视</b>：降低地表不透明度，看见地下管网</li>
+        <li><b>拖拽</b>旋转 · <b>右键</b>平移 · <b>滚轮</b>缩放</li>
+        <li>键盘 <kbd>←</kbd><kbd>→</kbd> 切换工艺，<kbd>空格</kbd> 暂停水流</li>
+      </ul>
+    </div>
+    <div class="info-body" id="infoBody" hidden></div>
+  </section>
+
+  <footer class="dock glass">
+    <div class="timeline" id="timeline">
+      <div class="track" id="track"></div>
+      <div class="ticks" id="ticks"></div>
+      <div class="drop" id="dropMarker" title="追踪水滴当前位置"></div>
+    </div>
+    <div class="controls">
+      <button class="btn" id="btnPlay" title="暂停/播放水流 (空格)"><span class="ico">❚❚</span><span>水流</span></button>
+      <label class="slider"><span>流速</span><input type="range" id="speed" min="1" max="20" step="0.5" value="6" /></label>
+      <span class="sep"></span>
+      <button class="btn toggle" id="btnFollow" title="镜头跟随一滴水 (F)"><span class="ico">💧</span><span>跟随水滴</span></button>
+      <button class="btn toggle" id="btnTour" title="自动导览 (T)"><span class="ico">▶</span><span>自动导览</span></button>
+      <span class="sep"></span>
+      <label class="slider"><span>地表透视</span><input type="range" id="ground" min="0.1" max="1" step="0.01" value="1" /></label>
+      <button class="btn toggle on" id="btnPipes" title="管道半透明显示内部水流"><span>管道透视</span></button>
+      <button class="btn toggle on" id="btnLabels" title="显示/隐藏标签"><span>标签</span></button>
+    </div>
+  </footer>
+
+  <div id="loading"><div class="spinner"></div><p>正在构建城市水循环模型…</p></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
